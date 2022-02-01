@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include<stdlib.h>
-struct node
-{
+struct node{
 int val;
 struct node *link;
 };
