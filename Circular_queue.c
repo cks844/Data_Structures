@@ -3,7 +3,7 @@
 int cqueue[MAX];
 int front = -1;
 int rear = -1;
-void insert(int item)
+void insert(int item)//TIME COMPLEXITY=O(1)
 {
     if((front == 0 && rear == MAX-1) || (front == rear+1))
     {
@@ -24,7 +24,7 @@ void insert(int item)
     cqueue[rear] = item ;
     printf("Inserted -> %d\n", item);
 }
-void deletion()
+void deletion()//TIME COMPLEXITY=O(1)
 {
     if(front == -1)
         printf("\nQueue is Empty!!\n");
@@ -46,7 +46,7 @@ void deletion()
     }
 }
 
-void display()
+void display()//TIME COMPLEXITY=O(n)
 {
     int frontPos = front,rearPos = rear;
     if(front == -1)
