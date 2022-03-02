@@ -1,5 +1,5 @@
 #include<stdio.h>
-struct sparse{
+struct spars{
 int row;
 int column;
 int value;
@@ -11,7 +11,7 @@ printf("\n Enter the size of row&column:");
 scanf("%d %d",&r,&c);
 int mat[r][c];
 printf("Enter the elements of the matrix:");
-struct sparse sp[20];
+struct spars sp[20];
 for(i=0;i<r;i++)
 {
     for(j=0;j<c;j++)
