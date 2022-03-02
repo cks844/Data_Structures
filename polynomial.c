@@ -1,25 +1,30 @@
 #include<stdio.h>
-struct polynomial
-{
-    int exp;
-    float coeff;
-}poly[20];
+struct polynomial{
+    int coefficient;
+    int exponent;
+};          
 
-int main()
-{
-    int n,i,k=0;
-    printf("Enter the degree of the polynomial : ");
-    scanf("%d",&n);
-    for(i=0;i<=n;i++)
-    {
-        printf("Enter the coefficient of x^%d : ",i);
-        scanf("%f",&poly[i].coeff);
-        poly[i].exp=i;
-    }
-    printf("The polynomial is ");
-    for(i=n;i>0;i--)
-    {
-        printf(" %.1fx^%d +",poly[i].coeff,poly[i].exp);
-    }
-    printf(" %.1fx^%d ",poly[0].coeff,poly[0].exp);
+
+struct polynomial a[50],b[50];
+
+int main(){
+   int degree1,degree2;
+   int i, k=0;
+
+   printf("Enter the highest degree of polynomial: ");
+   scanf("%d",&degree1);        
+   
+   printf("\nEnter Polynomial\n");
+   for(i=0; i <= degree1; i++){   
+       printf("\nEnter the exponent: ");
+       scanf("%d", &a[i].exponent); 
+       printf("\nEnter it's coefficient: ");
+       scanf("%d", &a[i].coefficient); 
+   }
+   printf("\nExpression = %dx^%d", a[0].coefficient, a[0].exponent);
+   for(i=1; i <= degree1; i++){
+       printf(" + %dx^%d", a[i].coefficient, a[i].exponent);
+   }        
+printf("\n");
+return 0;
 }
