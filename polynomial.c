@@ -5,11 +5,11 @@ struct polynomial{
 };          
 
 
-struct polynomial a[50],b[50];
+struct polynomial a[50];
 
 int main(){
-   int degree1,degree2;
-   int i, k=0;
+   int degree1;
+   int i;
 
    printf("Enter the highest degree of polynomial: ");
    scanf("%d",&degree1);        
