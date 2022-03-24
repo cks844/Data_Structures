@@ -1,17 +1,17 @@
+
 #include <stdio.h>
 #include<stdlib.h>
 struct node{
-int val;
+int data;
 struct node *link;
 };
-struct node*head;int value;
+struct node*head=NULL;int value;
 insert_beg()
 {
-  struct node *ptr = (struct node*)malloc(sizeof(struct node));
   struct node *temp = (struct node*)malloc(sizeof(struct node));
-  printf("enter the element you want to insert:");
+  printf("\nEnter the element you want to insert:");
   scanf("%d",&value);
-  temp->val=value;
+  temp->data=value;
   temp->link=head;
   head=temp;
 }
@@ -19,68 +19,85 @@ insert_end()
 {
     struct node *ptr = (struct node*)malloc(sizeof(struct node));
     struct node *temp = (struct node*)malloc(sizeof(struct node));
-    printf("enter the element you want to insert:");
-            scanf("%d",&value);
             ptr=head;
+            if(ptr==NULL){
+                printf("List is empty,insert at beginning\n");}
+            else{
+            printf("\nEnter the element you want to insert:");
+            scanf("%d",&value);
             while(ptr->link!=NULL)
             {
                 ptr=ptr->link;
             }
             ptr->link=temp;
-            temp->val=value;
-            temp->link=NULL;
+            temp->data=value;
+            temp->link=NULL;}
+
 }
 insert_pos()
 {
     int key;
     struct node *ptr = (struct node*)malloc(sizeof(struct node));
     struct node *temp = (struct node*)malloc(sizeof(struct node));
-    printf("enter the element you want to insert:");
+    printf("\nEnter the element you want to insert:");
     scanf("%d",&value);
-    printf("enter the value of node after which the insertion need to be done\n");
+    printf("Enter the value of node after which the insertion need to be done\n");
     scanf("%d",&key);
     ptr=head;
-    while((ptr->val!=key)&&(ptr->link!=NULL))
+    while((ptr->data!=key)&&(ptr->link!=NULL))
       {
         ptr=ptr->link;
       }
-    if(ptr->val==key)
-      {
-
-        temp->link=ptr->link;
-        ptr->link=temp;temp->val=value;
-      }
+     if(ptr->link==NULL)
+     {
+         printf("Search fails\n");
+     }
     else
       {
-        printf("value not found\n");
+        temp->link=ptr->link;
+        ptr->link=temp;
+        temp->data=value;
       }
+
 }
 delete_beg()
 {
-    struct node *ptr = (struct node*)malloc(sizeof(struct node));
-    ptr=head;
-    head=ptr->link;
-    free(ptr);
+    struct node *temp = (struct node*)malloc(sizeof(struct node));
+    if(head==NULL)
+    {
+        printf("List is empty\n");
+    }
+    temp=head;
+    head=head->link; //head is a part of first node.So getting the link of first node.
+    free(temp);//'free'will delete the memory location
 }
 delete_end()
-{
+{   //here we need two pointers;one(temp) for deletion and other(ptr) for accessing previous node
     struct node *ptr = (struct node*)malloc(sizeof(struct node));
     struct node *temp = (struct node*)malloc(sizeof(struct node));
     if(head==NULL)
     {
-        printf("\nunderflow\n");
+        printf("List is empty\n");
     }
     else
     {
-        ptr=head;
-        while(ptr->link!=NULL)
+        temp=head;
+        while(temp->link!=NULL)
         {
-            temp=ptr;
-            ptr=ptr->link;
+            ptr=temp;//for accessing the previous node(when loop terminates,we get previous node)
+            temp=temp->link;
 
         }
-        temp->link=NULL;
-        free(ptr);
+        if(temp==head)
+        {
+            head=NULL;
+        }
+        else
+        {
+        ptr->link=NULL;
+        }
+        free(temp);
+
     }
 }
 delete_pos()
@@ -88,19 +105,19 @@ delete_pos()
     int key;
     struct node *ptr = (struct node*)malloc(sizeof(struct node));
     struct node *temp = (struct node*)malloc(sizeof(struct node));
-    printf("enter the value of node after which the deletion need to be done\n");
+    printf("Enter the value of node after which the deletion need to be done\n");
     scanf("%d",&key);
     ptr=head;
     if(head== NULL)
         {
-            printf("\nunderflow\n");
+           printf("List is empty\n");
 
         }
     while(ptr!=NULL)
      {
-        temp=ptr;
-        ptr=ptr->link;
-        if(temp->val==key)
+        temp=ptr; //while traversing,here we get node at location-1
+        ptr=ptr->link;//here we get node at location
+        if(temp->data==key)
             {
              temp->link=ptr->link;
              free(ptr);
@@ -114,11 +131,11 @@ void insertion()
     int s=1;
     if(ptr == NULL)
     {
-        printf("\noverflow\n");
+       printf("List is full\n");
     }
     else
     {
-         printf("where you want to insert the elements\n1:front\n2:at the end\n3:between two nodes\n");
+         printf("Where you want to insert the elements\n1:front\n2:at the end\n3:between two nodes\n");
          scanf("%d",&s);
         switch(s)
          {
@@ -132,7 +149,7 @@ void insertion()
           case 3:
             insert_pos();
             break;
-          default:printf("invalid input\n");
+          default:printf("Invalid input\n");
         }
     }
 }
@@ -143,7 +160,7 @@ void delete()
     struct node *ptr = (struct node*)malloc(sizeof(struct node));
     if(head== NULL)
     {
-        printf("\nunderflow\n");
+      printf("List is empty\n");
     }
     else
     {
@@ -160,7 +177,7 @@ void delete()
           case 3:
             delete_pos();
              break;
-          default:printf("invalid input\n");
+          default:printf("Invalid input\n");
         }
         }
 }
@@ -170,21 +187,21 @@ void  display()
     ptr=head;
     if(head!=NULL)
     {
-     printf("list elements\n");
+     printf("List elements\n");
      while(ptr!=NULL)
        {
         if(ptr->link==NULL)
         {
-          printf("%d",ptr->val);
+          printf("%d",ptr->data);
           break;
         }
-        printf("%d>>",ptr->val);
+        printf("%d>>",ptr->data);
         ptr=ptr->link;
        }
      printf("\n");
     }
    else
-        printf("list is empty\n");
+        printf("List is empty\n");
 }
 int main()
 {
