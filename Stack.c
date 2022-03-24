@@ -1,6 +1,6 @@
 #include <stdio.h>
 #define lim 4
-int stack[lim],top=-1,i,c,e;
+int stack[lim],top=-1,i,ch,e;
 void push()
 {
     if(top==lim-1)
@@ -51,8 +51,8 @@ int main()
     do{
         printf("\n1. PUSH\n2. POP\n3. DISPLAY\n4. EXIT\n");
         printf("Enter your choice:");
-        scanf("%d",&c);
-        switch(c)
+        scanf("%d",&ch);
+        switch(ch)
         {
             case 1:
                 push();
@@ -69,5 +69,5 @@ int main()
                 printf("\nInvalid choice selected\n");
                 break;
         }
-        }while(c!=4);
+        }while(ch!=4);
 }
