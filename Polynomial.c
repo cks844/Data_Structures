@@ -26,5 +26,4 @@ int main(){
        printf(" + %dx^%d", a[i].coefficient, a[i].exponent);
    }        
 printf("\n");
-return 0;
-}
+return 0;}
